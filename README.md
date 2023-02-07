@@ -3,4 +3,4 @@
 Algorithme de régression linéaire par résolution analytique 
 
 
-Algoritme de régression linéaire par descente de gradient
+Algorithme de régression linéaire par descente de gradient
