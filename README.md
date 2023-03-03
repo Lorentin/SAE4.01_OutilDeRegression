@@ -19,13 +19,14 @@
 <h1>Algorithme de régression linéaire par descente de gradient</h1>
   <h2>Objectif</h2>
   <p>Trouver le minimium locale d'un modéle donnée a partir d'un jeu de données a l'aide d'une descente de gradient</p>
+  <h2>Élements de calcul</h2>
   <ul>
     <li>sommeYc = somme de la colonne des Y au carré</li>
     <li>sommeXY = somme de la colonne des Y * X</li>
     <li>sommeY = somme de la colonne des Y</li>
     <li>sommeXc = somme de la colonne des X au carré</li>
     <li>sommeX = somme de la colonne des X</li>
-    <li>tailleX</li>
+    <li>tailleX = nombre de données du jeu (taille de la colonne des X)</li>
   </ul>
   <h2>Calcul de coût</h2>
     <ul>
