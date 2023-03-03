@@ -16,4 +16,4 @@
     <li>y = alpha * x + beta</li>
   </ul>
 
-Algorithme de régression linéaire par descente de gradient
+<h1>Algorithme de régression linéaire par descente de gradient</h1>
