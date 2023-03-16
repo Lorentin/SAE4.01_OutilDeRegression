@@ -84,7 +84,7 @@ def gradient(a, b, pas, dataFrame) -> tuple():
         # calcul du cout apres changement des a et b pour savoir si on réduit le pas
         coutSuivant = cout(a, b, sommeX, sommeXY, sommeYc, sommeXc, sommeY, tailleX)
         if coutPrecedent < coutSuivant:
-            pas = pas / 2
+            pas = pas / 100
         coutPrecedent = coutSuivant
 
         # calcul des gradient de a et b à partir de leurs dérivées partiels
@@ -99,8 +99,7 @@ def gradient(a, b, pas, dataFrame) -> tuple():
         # Test pour sortir de la boucle ou non
         # Test si convergence d'un des 2 gradients
         # Ou test si on arrive a limite d'iterations definit
-        if abs(derivA) <= 1E-15 and abs(derivB) <= 1E-15 or iteration == 100000:
-            print(iteration)
+        if abs(derivA) <= 1E-15 or abs(derivB) <= 1E-15 or iteration == 1000000:
             break
 
     resultat = (a, b)
@@ -109,4 +108,4 @@ def gradient(a, b, pas, dataFrame) -> tuple():
 
 jeuxDonnees = ouvertureFichier("test.txt")
 miseEnForme(jeuxDonnees)
-print(gradient(a = 10, b = 10, pas = 10, dataFrame=jeuxDonnees))
+print(gradient(a = 15, b = 15, pas = 100, dataFrame=jeuxDonnees))
