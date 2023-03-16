@@ -99,7 +99,8 @@ def gradient(a, b, pas, dataFrame) -> tuple():
         # Test pour sortir de la boucle ou non
         # Test si convergence d'un des 2 gradients
         # Ou test si on arrive a limite d'iterations definit
-        if abs(derivA) <= 1E-15 and abs(derivB) <= 1E-15 or iteration == 10000000:
+        if abs(derivA) <= 1E-15 and abs(derivB) <= 1E-15 or iteration == 100000:
+            print(iteration)
             break
 
     resultat = (a, b)
@@ -108,4 +109,4 @@ def gradient(a, b, pas, dataFrame) -> tuple():
 
 jeuxDonnees = ouvertureFichier("test.txt")
 miseEnForme(jeuxDonnees)
-print(gradient(a = 10, b = 10, pas = 0.00001, dataFrame=jeuxDonnees))
+print(gradient(a = 10, b = 10, pas = 10, dataFrame=jeuxDonnees))

@@ -1,3 +1,5 @@
+from typing import Tuple, Any
+
 import matplotlib.pyplot as plt
 from pandas import DataFrame
 
@@ -56,23 +58,30 @@ class ResolutionAnalytique:
 
         return facteurs
 
-    def fonction(facteur, dataFrame) -> DataFrame:
+    def fonction(facteur, dataFrame) -> tuple[Any, Any]:
         """
         Applique la fonction sur toutes les valeurs de x
         :param dataFrame: Trame de données initial
         :param facteur: tuple contenant alpha et beta
-        :return: Trame de données contenant les valeurs apres calcul
+        :return: deux points calulés a partir du modèle
         """
 
         # Affiche le model trouvée pour calculer les données
         print("y = " + str(round(facteur[0], 2)) + " * x + " + str(round(facteur[1], 2)))
 
-        # Calcul y pour tous les x
-        fn = facteur[0] * dataFrame['x'] + facteur[1]
+        # Trouve le x le plus petit et le x le plus grand
+        # pour trouver "le premier point et le dernier" pour tracer la courbe
+        minPoint = dataFrame['x'].min()
+        maxPoint = dataFrame['x'].max()
 
-        return fn
+        # Calcul y pour le minimum et le maximum
+        dernierY = facteur[0] * minPoint + facteur[1]
+        premierY = facteur[0] * maxPoint + facteur[1]
+        points = ([dernierY, premierY],[minPoint, maxPoint])
 
-    def affichage(dataFrame, fn) -> None:
+        return points
+
+    def affichage(dataFrame, points) -> None:
         """
         Affiche le nuage de point a partir des colonnes x et y de la trame de données
         ainsi que la courbe de de la fonction passée en parametres
@@ -80,7 +89,7 @@ class ResolutionAnalytique:
         :param dataFrame : trame de données des données du fichier
         """
         dataFrame.plot.scatter(x="x", y="y")
-        plt.plot(dataFrame['x'], fn)
+        plt.plot(points[1], points[0], color="red")
         plt.show()
 
 
