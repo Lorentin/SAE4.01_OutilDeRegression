@@ -1,4 +1,6 @@
+from matplotlib import pyplot as plt
 from pandas import DataFrame
+from typing import Any
 
 from OuvertureFichier import ouvertureFichier
 
@@ -85,6 +87,8 @@ def gradient(a, b, pas, dataFrame) -> tuple():
         coutSuivant = cout(a, b, sommeX, sommeXY, sommeYc, sommeXc, sommeY, tailleX)
         if coutPrecedent < coutSuivant:
             pas = pas / 100
+        else:
+            pas = pas * 1.5
         coutPrecedent = coutSuivant
 
         # calcul des gradient de a et b à partir de leurs dérivées partiels
@@ -105,7 +109,53 @@ def gradient(a, b, pas, dataFrame) -> tuple():
     resultat = (a, b)
     return resultat
 
+def fonction(facteur, dataFrame) -> tuple[Any, Any]:
+    """
+    Applique la fonction sur toutes les valeurs de x
+    :param dataFrame: Trame de données initial
+    :param facteur: tuple contenant alpha et beta
+    :return: deux points calulés a partir du modèle
+    """
 
-jeuxDonnees = ouvertureFichier("test.txt")
-miseEnForme(jeuxDonnees)
-print(gradient(a = 15, b = 15, pas = 100, dataFrame=jeuxDonnees))
+    # Affiche le model trouvée pour calculer les données
+    print("------------ Résultat ------------")
+    print("y = " + str(round(facteur[0], 2)) + " * x + " + str(round(facteur[1], 2)))
+
+    # Trouve le x le plus petit et le x le plus grand
+    # pour trouver "le premier point et le dernier" pour tracer la courbe
+    minPoint = dataFrame['x'].min()
+    maxPoint = dataFrame['x'].max()
+
+    # Calcul y pour le minimum et le maximum
+    dernierY = facteur[0] * minPoint + facteur[1]
+    premierY = facteur[0] * maxPoint + facteur[1]
+    points = ([dernierY, premierY],[minPoint, maxPoint])
+
+    return points
+
+def affichage(dataFrame, points) -> None:
+    """
+    Affiche le nuage de point à partir des colonnes x et y de la trame de données
+    ainsi que la courbe de la fonction passée en parametres
+    :param fn: fonction y = alpha * colonne de données de x + beta
+    :param dataFrame : trame de données des données du fichier
+    """
+    dataFrame.plot.scatter(x="x", y="y")
+    plt.plot(points[1], points[0], color="red")
+    plt.title('Descente de Gradient')
+    plt.show()
+
+def lancement(fichier):
+    try:
+        jeuxDonnees = ouvertureFichier(fichier)
+        miseEnForme(jeuxDonnees)
+        # a = jeuxDonnees['x'].mean()
+        # b = jeuxDonnees['x'].mean()
+        facteur = gradient(a = 15 , b = 15, pas = 1000, dataFrame=jeuxDonnees)
+        fonc = fonction(facteur, jeuxDonnees)
+        affichage(jeuxDonnees, fonc)
+    except ValueError:
+        print("Fichier Illisible merci de relancer avec un autre fichier")
+    except Exception:
+        print("Fichier Illisible merci de relancer avec un autre fichier")
+
