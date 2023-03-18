@@ -31,6 +31,8 @@
   <h2>Calcul de coût</h2>
     <ul>
       <li>cout = sommeYc - (2 * a * sommeXY) - (2 * b * sommeY) + (a**2 * sommeXc) + (2 * a * b * sommeX) + n * b**2</li>
+      <li>Si précedent supérieur a actuelle alors augmentation de x 1.5 pour changer  de coté</li>
+      <li>Si précedent inférieur a actuelle alors division par 100</li>
     </ul>
   <h2>Calcul gradient de A à partir de sa dérivée partielle</h2>
     <ul>
