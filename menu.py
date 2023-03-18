@@ -3,10 +3,51 @@ import ResolutionAnalytique
 import indicateurs
 import os
 
+
 def afficherFichier():
     fichiers = os.listdir("fichierTests/")
     for fichier in fichiers:
         print("- " + fichier)
+
+
+def testConversion(choix):
+    try:
+        return int(choix)
+    except Exception as e:
+        return 0
+
+def calculSurface(facteurs):
+    """
+    Calcul de a partir d'une surface et du modéle trouvé
+    :param facteurs: a et b permettant le calcul à partir du modele
+    :return: estimation d un prix a partir de la surface
+    """
+    surface = input("Entrez la surface : ")
+    try:
+        surface = int(surface)
+        print(str(facteur[0] * surface + facteur[1]))
+    except Exception as e:
+        raise e
+
+def dernierChoix(facteur):
+    # Dernier choix
+    print("------------------------------")
+    print("1 - Calculer une estimation du prix")
+    print("2 - Quitter")
+    while True:
+        choix = input("Choisissez : ")
+        choix = testConversion(choix)
+        if int(choix) == 1:
+            while True:
+                try:
+                    calculSurface(facteur)
+                    break
+                except Exception:
+                    choix = 0
+            break
+        elif int(choix) == 2:
+            break
+        print("choix incorrect")
 
 
 print("------Menu------")
@@ -16,7 +57,7 @@ print("3 - Afficher indicateurs")
 
 while True:
     choix = input("Choisissez : ")
-    # gtestion si transformation impossible
+    # gestion si transformation impossible
     try:
         choix = int(choix)
     except Exception as e:
@@ -31,9 +72,10 @@ while True:
         while True:
             try:
                 fichier = "fichierTests/" + input("Choisissez votre fichier : ") + ".txt"
-                ResolutionAnalytique.lancement(fichier)
+                facteur = ResolutionAnalytique.lancement(fichier)
+                dernierChoix(facteur)
                 break
-            except IOError as e:
+            except Exception as e:
                 print("Erreur choix incorrect")
         break
     # descente de gradient
@@ -43,11 +85,12 @@ while True:
         afficherFichier()
         # choix et lancement algorithme
         while True:
-            try :
+            try:
                 fichier = "fichierTests/" + input("Choisissez votre fichier : ") + ".txt"
-                gradient.lancement(fichier)
+                facteur = gradient.lancement(fichier)
+                dernierChoix(facteur)
                 break
-            except IOError as e:
+            except Exception as e:
                 print("Erreur choix incorrect")
         break
     elif int(choix) == 3:
@@ -56,7 +99,7 @@ while True:
         afficherFichier()
         # choix et lancement algorithme
         while True:
-            try :
+            try:
                 fichier = "fichierTests/" + input("Choisissez votre fichier : ") + ".txt"
                 indicateurs.lancement(fichier)
                 break

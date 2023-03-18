@@ -100,7 +100,6 @@ def lancement(fichier):
         facteur = facteurFn(indicateurs, jeuxDonnees)
         fonc = fonction(facteur, jeuxDonnees)
         affichage(jeuxDonnees, fonc)
-    except ValueError:
-        print("Fichier Illisible merci de relancer avec un autre fichier")
+        return facteur
     except Exception:
-        print("Fichier Illisible merci de relancer avec un autre fichier")
+        raise Exception("Fichier Illisible merci de relancer avec un autre fichier")
