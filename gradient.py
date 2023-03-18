@@ -14,7 +14,6 @@ def miseEnForme(dataFrame) -> DataFrame:
     dataFrame['xy'] = dataFrame['x'] * dataFrame['y']
     dataFrame['x^2'] = dataFrame['x'] ** 2
     dataFrame['y^2'] = dataFrame['y'] ** 2
-    dataFrame['x^2'] = dataFrame['x'] ** 2
 
     return dataFrame
 
