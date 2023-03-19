@@ -1,5 +1,8 @@
 # SAE4.01_OutilDeRegression
 
+<h1>Lien dossier google drive</h1>
+<span>https://docs.google.com/document/d/1LPb8uSpOw7VnBMYcfdHLbc14scUjD5XHPc-T9n7Jg-Y/edit?usp=sharing</span>
+
 <h1>Algorithme de régression linéaire par résolution analytique</h1>
   <h2>Calcul des indicateurs de la variance et de la covariance</h2>
   <ul>
